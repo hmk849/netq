@@ -49,7 +49,7 @@ jobs:
           d = plistlib.load(open('/tmp/NetQ-info.plist', 'rb'))
           assert d.get('CFBundleExecutable'), 'missing CFBundleExecutable'
           assert d.get('CFBundleIdentifier') == 'com.hmk.NetQ', d.get('CFBundleIdentifier')
-          assert d.get('CFBundleShortVersionString') == '1.0.0', d.get('CFBundleShortVersionString')
+          assert d.get('CFBundleShortVersionString') == '1.0', d.get('CFBundleShortVersionString')  # Xcode normalizes MARKETING_VERSION 1.0.0 to 1.0
           assert d.get('CFBundleVersion') == '1', d.get('CFBundleVersion')
           assert d.get('MinimumOSVersion') == '26.0', d.get('MinimumOSVersion')
           print('IPA verify OK:', d['CFBundleIdentifier'], d['CFBundleShortVersionString'], d['CFBundleVersion'])
