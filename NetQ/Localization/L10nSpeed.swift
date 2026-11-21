@@ -1,0 +1,25 @@
+extension L10n {
+    static let speedTable: [String: (zh: String, en: String)] = [
+        "ctx.wifi": ("Wi-Fi", "Wi-Fi"), "ctx.cellular": ("移动网络", "Cellular"), "ctx.vpn": ("VPN", "VPN"),
+        "ctx.node": ("节点", "Node"),
+        "net.wifi": ("Wi-Fi", "Wi-Fi"), "net.cellular": ("蜂窝网络", "Cellular"), "net.wired": ("有线网络", "Wired"),
+        "net.other": ("其他", "Other"), "net.none": ("无网络", "Offline"),
+        "det.reports": ("已保存的报告", "Saved Reports"), 
+        "det.note": ("测速使用 Cloudflare 公共测速端点，会消耗少量流量（约 100–400 MB，取决于网速）。",
+                     "Speed tests use Cloudflare's public endpoints and consume data (roughly 100–400 MB depending on speed)."),
+        "sp.connecting": ("正在连接服务器", "Connecting to server"), "sp.ping": ("Ping 延迟", "Ping"),
+        "sp.download": ("下载速度", "Download"), "sp.upload": ("上传速度", "Upload"),
+        "sp.stability": ("网络稳定性", "Stability"), "sp.security": ("网络安全信息", "Network info"),
+        "sp.report": ("生成报告", "Report"), "sp.jitter": ("抖动", "Jitter"), "sp.loss": ("丢包率", "Packet loss"),
+        "sp.ip": ("IP 地址", "IP Address"), "sp.country": ("国家", "Country"), "sp.isp": ("运营商", "ISP"),
+        "sp.type": ("网络类型", "Network Type"), "sp.time": ("检测时间", "Time"),
+        "sp.retest": ("重新检测", "Retest"), "sp.save": ("保存", "Save"), "sp.saved": ("已保存", "Saved"),
+        "sp.err.connect": ("无法连接测速服务器，请检查网络。", "Could not reach the test server. Check your connection."),
+        "sp.err.transfer": ("速度测试失败，请稍后重试。", "Speed test failed. Please try again."),
+        "sp.err.offline": ("当前没有可用网络。", "No network connection."),
+        "sp.mismatch.wifi": ("当前未使用 Wi-Fi，结果为实际所用网络的数据。", "Not on Wi-Fi; results reflect the network actually in use."),
+        "sp.mismatch.cell": ("当前未使用蜂窝网络（iOS 不允许 App 强制切换），结果为实际所用网络的数据。",
+                             "Not on cellular (iOS doesn't let apps force it); results reflect the network actually in use."),
+        "rep.empty": ("还没有保存的报告。", "No saved reports yet."), "rep.clear": ("清空", "Clear"),
+    ]
+}

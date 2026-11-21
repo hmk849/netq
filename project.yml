@@ -1,0 +1,23 @@
+name: NetQ
+options:
+  bundleIdPrefix: com.hmk
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    OTHER_LDFLAGS: "-lresolv"
+    SWIFT_OBJC_BRIDGING_HEADER: NetQ/Core/NetQ-Bridging-Header.h
+targets:
+  NetQ:
+    type: application
+    platform: iOS
+    sources: [NetQ]
+    info:
+      path: NetQ/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: NetQ
+        UILaunchScreen: {}
+        NSLocationWhenInUseUsageDescription: "NetQ shows your device position on the map, separately from IP-based location."

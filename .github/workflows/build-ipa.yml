@@ -1,0 +1,63 @@
+name: Build NetQ IPA
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select latest Xcode
+        run: |
+          LATEST_XCODE=$(ls -d /Applications/Xcode*.app | sort -V | tail -1)
+          echo "Using $LATEST_XCODE"
+          sudo xcode-select -s "$LATEST_XCODE"
+          xcodebuild -version
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Archive (unsigned)
+        run: |
+          xcodebuild archive \
+            -project NetQ.xcodeproj \
+            -scheme NetQ \
+            -archivePath build/NetQ.xcarchive \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p build/Payload
+          cp -R build/NetQ.xcarchive/Products/Applications/*.app build/Payload/
+          cd build && zip -r NetQ-unsigned.ipa Payload
+          ls -lh NetQ-unsigned.ipa
+
+      - name: Verify IPA
+        run: |
+          unzip -p build/NetQ-unsigned.ipa 'Payload/*.app/Info.plist' > /tmp/NetQ-info.plist
+          python3 - <<'EOF'
+          import plistlib
+          d = plistlib.load(open('/tmp/NetQ-info.plist', 'rb'))
+          assert d.get('CFBundleExecutable'), 'missing CFBundleExecutable'
+          assert d.get('CFBundleIdentifier') == 'com.hmk.NetQ', d.get('CFBundleIdentifier')
+          assert d.get('CFBundleShortVersionString') == '1.0.0', d.get('CFBundleShortVersionString')
+          assert d.get('CFBundleVersion') == '1', d.get('CFBundleVersion')
+          assert d.get('MinimumOSVersion') == '26.0', d.get('MinimumOSVersion')
+          print('IPA verify OK:', d['CFBundleIdentifier'], d['CFBundleShortVersionString'], d['CFBundleVersion'])
+          EOF
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetQ-unsigned
+          path: build/NetQ-unsigned.ipa
+          if-no-files-found: error

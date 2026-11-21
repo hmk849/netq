@@ -1,0 +1,27 @@
+extension L10n {
+    static let nodeTable: [String: (zh: String, en: String)] = [
+        "node.list": ("节点", "Nodes"), "node.rank": ("延迟排行榜", "Latency ranking"),
+        "node.favOnly": ("只看收藏", "Favorites only"),
+        "node.note": ("延迟为 TCP 连接耗时（iOS App 无法发送 ICMP Ping）；丢包率为 20 次连接中失败的比例。",
+                      "Latency is TCP connect time (iOS apps can't send ICMP ping); loss is the share of 20 connection attempts that failed."),
+        "node.empty": ("还没有节点，点右上角 + 添加。", "No nodes yet. Tap + to add one."),
+        "node.add": ("添加节点", "Add Node"), "node.name": ("名称（可选）", "Name (optional)"),
+        "node.host": ("IP 或域名", "IP or domain"), "node.port": ("端口", "Port"),
+        "node.dl": ("下载测速地址（可选）", "Download test URL (optional)"),
+        "node.ul": ("上传测速地址（可选）", "Upload test URL (optional)"),
+        "node.speedhint": ("下载/上传速度需要该节点提供 https 测速文件或上传接口；没有填写时这两项显示为 N/A，不会编造数据。",
+                           "Download/upload speed needs an https test file or upload endpoint on the node. Without one, those results show N/A, never made-up numbers."),
+        "node.speedNA": ("未配置", "Not set"),
+        "node.badhost": ("请输入有效的 IP 或域名（不含 http:// 和路径）。", "Enter a valid IP or domain (no http:// or path)."),
+        "node.badport": ("端口需在 1–65535 之间。", "Port must be 1–65535."),
+        "node.badurl": ("测速地址必须是 https 链接。", "Test URLs must be https links."),
+        "node.save": ("保存", "Save"), "node.cancel": ("取消", "Cancel"),
+        "node.fav": ("收藏", "Favorite"), "node.unfav": ("取消收藏", "Unfavorite"), "node.delete": ("删除", "Delete"),
+        "node.test": ("快速检测", "Quick test"), "node.testing": ("检测中…", "Testing…"),
+        "node.never": ("尚未检测", "Not tested"), "node.timeout": ("超时/不可达", "Timeout / unreachable"),
+        "node.status": ("检测结果", "Results"), "node.avg": ("平均延迟", "Average latency"),
+        "node.min": ("最低延迟", "Min latency"), "node.stab": ("连接稳定性（延迟波动）", "Stability (latency spread)"),
+        "node.resp": ("HTTPS 响应时间", "HTTPS response time"), "node.na": ("N/A", "N/A"),
+        "sp.err.node": ("无法连接该节点，请检查地址和端口。", "Could not connect to this node. Check the address and port."),
+    ]
+}
